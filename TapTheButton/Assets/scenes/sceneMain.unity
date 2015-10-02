@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freq: 50
-  cooldownMusic: 100
+  cooldownMusic: 400
   timeToPush: 200
   scoreToWin: 10
 --- !u!224 &1706839825
@@ -1327,8 +1327,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1e6554ce037d3eb47aed381e9e84bfe0, type: 3}
   - {fileID: 8300000, guid: 194032ef0831aef40be45b603a5843c3, type: 3}
   - {fileID: 8300000, guid: 9313953a3ffb61748a157996cac28081, type: 3}
+  saveSounds: []
+  sourcePlayer: []
   sourcePlayer1: {fileID: 944366818}
   sourcePlayer2: {fileID: 556931474}
+  wrongAnswerAudio: {fileID: 8300000, guid: cac78fd2560eefb4e98e5f132325f1a2, type: 3}
 --- !u!1 &1760199839
 GameObject:
   m_ObjectHideFlags: 0

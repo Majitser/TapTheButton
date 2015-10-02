@@ -17,6 +17,7 @@ public class Player {
 		this.timerPush = 0;
 		this.id = id;
 		this.isReceivingSound = false;
+		this.score = 0;
 	}
 
 

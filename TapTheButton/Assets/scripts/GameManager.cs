@@ -30,13 +30,15 @@ public class GameManager : MonoBehaviour {
 		// FOR PLAYERS
 		checkPlayer (players [0]);
 		checkPlayer (players [1]);
+	}
 
-
+	void Update()
+	{
 		if(Input.GetKeyDown("q"))
 		{
 			buttonPress(0);
 		}
-
+		
 		if(Input.GetKeyDown("p"))
 		{
 			buttonPress(1);
