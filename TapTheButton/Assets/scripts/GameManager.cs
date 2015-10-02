@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
 	public static List<Player> players;
 
+	public GameObject soundManager;
+
 
 	// Use this for initialization
 	void Start () {
@@ -39,11 +41,11 @@ public class GameManager : MonoBehaviour {
 
 		if (p.timerTemporisation > cooldownMusic && Random.Range(0, freq) == 0)
 		{
-			Debug.Log("Fire Sound for Player " + p.id);
 			
 			p.timerTemporisation = 0;
 			p.timerPush = 0;
 			p.isReceivingSound = true;
+			GetComponent<PlaySounds>().takeSound(p);
 		}
 
 		p.timerTemporisation++;

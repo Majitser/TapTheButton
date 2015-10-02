@@ -1219,6 +1219,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 1706839825}
   - 114: {fileID: 1706839824}
+  - 114: {fileID: 1706839826}
   m_Layer: 5
   m_Name: script
   m_TagString: Untagged
@@ -1240,6 +1241,7 @@ MonoBehaviour:
   freq: 10
   cooldownMusic: 100
   timeToPush: 200
+  soundManager: {fileID: 0}
 --- !u!224 &1706839825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1257,6 +1259,40 @@ RectTransform:
   m_AnchoredPosition: {x: 266, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &1706839826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706839823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2378afad4145ce4285a42c602f6ad9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsList:
+  - {fileID: 8300000, guid: 065492109c483484aa2679afeb57a19a, type: 3}
+  - {fileID: 8300000, guid: 2f00b24c5f57a7a4498e4d5eb4dcc29f, type: 3}
+  - {fileID: 8300000, guid: b9ef0627fb9a5164b8121d259500a335, type: 3}
+  - {fileID: 8300000, guid: c69041802a437e6478bb8ba645d3697e, type: 3}
+  - {fileID: 8300000, guid: 4b6c696298e282d42982edd1b04091e9, type: 3}
+  - {fileID: 8300000, guid: ec8666ebe3f2c014a83294bb38dcde36, type: 3}
+  - {fileID: 8300000, guid: 3ae91bd1d9c274447b9eca8fe698b994, type: 3}
+  - {fileID: 8300000, guid: 4d493104cac7ca540af3ddf04c91b0e1, type: 3}
+  - {fileID: 8300000, guid: a962038013b6e9e45a7327f0759e1932, type: 3}
+  - {fileID: 8300000, guid: 8eb79574395a16047975a1233f314440, type: 3}
+  - {fileID: 8300000, guid: 4a4e7bae8ae3db6458b0ff87980d10f8, type: 3}
+  - {fileID: 8300000, guid: 7dc4a9661cd5e2447aae3c85b72b5c6e, type: 3}
+  - {fileID: 8300000, guid: 86db46588005f7b439d25a5fd092b1e8, type: 3}
+  - {fileID: 8300000, guid: 6827a0110bea1414484c6a662aa3f00d, type: 3}
+  - {fileID: 8300000, guid: 6ae12539fc22b7e44ae3f653acf41b16, type: 3}
+  - {fileID: 8300000, guid: 66ec2fd117e3c4a4888ecbcacd5f36e9, type: 3}
+  - {fileID: 8300000, guid: 2a43135a5e20a7944854f14c1b001c91, type: 3}
+  - {fileID: 8300000, guid: 1e6554ce037d3eb47aed381e9e84bfe0, type: 3}
+  - {fileID: 8300000, guid: 194032ef0831aef40be45b603a5843c3, type: 3}
+  - {fileID: 8300000, guid: 9313953a3ffb61748a157996cac28081, type: 3}
+  sourcePlayer1: {fileID: 944366818}
+  sourcePlayer2: {fileID: 556931474}
 --- !u!1 &1760199839
 GameObject:
   m_ObjectHideFlags: 0

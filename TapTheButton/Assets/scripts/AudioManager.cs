@@ -10,9 +10,9 @@ public class AudioManager : MonoBehaviour
 	void Start ()
     {
         audioGround.panStereo = -1;
-        audioGround.PlayOneShot(sound, 1);
+        //audioGround.PlayOneShot(sound, 1);
         audioSky.panStereo = 1;
-        audioSky.PlayOneShot(sound, 1);
+        //audioSky.PlayOneShot(sound, 1);*/
     }
 
 	void Update ()

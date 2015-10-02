@@ -18,12 +18,21 @@ public class PlaySounds : MonoBehaviour {
 	
 	}
 
-	public void takeSound(int idPlayer)
+	public void takeSound(Player p)
 	{
 		int aleaSound = Random.Range (0, soundsList.Count);
-		if (idPlayer == 0)
-			sourcePlayer1.PlayOneShot (soundsList[aleaSound], 1f);
+		if (p.id == 0)
+		{
+			sourcePlayer1.PlayOneShot(soundsList[aleaSound], 1);
+			Debug.Log (sourcePlayer1);
+			//sourcePlayer1.clip = soundsList[aleaSound];
+			//sourcePlayer1.Play();
+		}
 		else 
-			sourcePlayer2.PlayOneShot (soundsList[aleaSound], 1f);
+		{
+			sourcePlayer2.PlayOneShot(soundsList[aleaSound], 1);
+			//sourcePlayer2.clip = soundsList[aleaSound];
+			//sourcePlayer2.Play();
+		}
 	}
 }
