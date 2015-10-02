@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public int timeToPush;
 	public int scoreToWin;
 
+	public static bool isOver;
 	public static List<Player> players;
 
 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour {
 		players.Add(new Player (0));
 		players.Add(new Player (1));
 
-		//Debug.Log ("Test : " + players [0].id);
+		isOver = false;
 	}
 
 
@@ -44,7 +45,8 @@ public class GameManager : MonoBehaviour {
 
 	public void checkPlayer(Player p)
 	{
-
+		if (isOver)
+			return;
 
 		if (p.isReceivingSound && p.timerPush > timeToPush)
 		{
@@ -69,6 +71,8 @@ public class GameManager : MonoBehaviour {
 	{
 		Debug.Log ("nbPlayer : " + nbPlayer + " / " + players[nbPlayer].isReceivingSound);
 
+		if (isOver)
+			return;
 
 		if (players[nbPlayer].isReceivingSound)
 		{
@@ -93,6 +97,7 @@ public class GameManager : MonoBehaviour {
 	{
 		if (players[p.id].score >= scoreToWin)
 		{
+			isOver = true;
 			GuiManager.instance.displayVictory(p);
 		}
 	}
