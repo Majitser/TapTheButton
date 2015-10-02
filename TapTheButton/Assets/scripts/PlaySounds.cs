@@ -5,12 +5,15 @@ using System.Collections.Generic;
 public class PlaySounds : MonoBehaviour {
 
 	public List<AudioClip> soundsList = new List<AudioClip>();
+	public List<AudioSource> sourcePlayer = new List<AudioSource>();
 	public AudioSource sourcePlayer1;
 	public AudioSource sourcePlayer2;
+	public AudioClip wrongAnswerAudio;
 
 	// Use this for initialization
 	void Start () {
-	
+		sourcePlayer.Add (sourcePlayer1);
+		sourcePlayer.Add (sourcePlayer2);
 	}
 	
 	// Update is called once per frame
@@ -21,18 +24,11 @@ public class PlaySounds : MonoBehaviour {
 	public void takeSound(Player p)
 	{
 		int aleaSound = Random.Range (0, soundsList.Count);
-		if (p.id == 0)
-		{
-			sourcePlayer1.PlayOneShot(soundsList[aleaSound], 1);
-			Debug.Log (sourcePlayer1);
-			//sourcePlayer1.clip = soundsList[aleaSound];
-			//sourcePlayer1.Play();
-		}
-		else 
-		{
-			sourcePlayer2.PlayOneShot(soundsList[aleaSound], 1);
-			//sourcePlayer2.clip = soundsList[aleaSound];
-			//sourcePlayer2.Play();
-		}
+		sourcePlayer [p.id].PlayOneShot (soundsList[aleaSound], 1f);
+	}
+
+	public void wrongAnswer(Player p)
+	{
+		sourcePlayer [p.id].PlayOneShot (wrongAnswerAudio, 1f);
 	}
 }
