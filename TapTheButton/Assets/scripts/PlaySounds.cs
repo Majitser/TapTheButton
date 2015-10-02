@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlaySounds : MonoBehaviour {
 
 	public List<AudioClip> soundsList = new List<AudioClip>();
+	public List<AudioClip> saveSounds = new List<AudioClip> ();
 	public List<AudioSource> sourcePlayer = new List<AudioSource>();
 	public AudioSource sourcePlayer1;
 	public AudioSource sourcePlayer2;
@@ -24,11 +25,14 @@ public class PlaySounds : MonoBehaviour {
 	public void takeSound(Player p)
 	{
 		int aleaSound = Random.Range (0, soundsList.Count);
+		saveSounds.Add (soundsList [aleaSound]);
 		sourcePlayer [p.id].PlayOneShot (soundsList[aleaSound], 1f);
+		soundsList.Remove (soundsList [aleaSound]);
 	}
 
-	public void wrongAnswer(Player p)
+	public void wrongAnswer(int idPlayer)
 	{
-		sourcePlayer [p.id].PlayOneShot (wrongAnswerAudio, 1f);
+		Debug.Log ("ok");
+		sourcePlayer [idPlayer].PlayOneShot (wrongAnswerAudio, 1f);
 	}
 }

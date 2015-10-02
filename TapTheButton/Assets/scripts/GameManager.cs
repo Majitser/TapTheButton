@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
 
 		if (p.timerTemporisation > cooldownMusic && Random.Range(0, freq) == 0)
 		{
-			Debug.Log ("PLAYER : " + p.id);
+			//Debug.Log ("PLAYER : " + p.id);
 
 			p.timerTemporisation = 0;
 			p.timerPush = 0;
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour {
 
 	public void buttonPress(int nbPlayer)
 	{
-		Debug.Log ("nbPlayer : " + nbPlayer + " / " + players[nbPlayer].isReceivingSound);
+		//Debug.Log ("nbPlayer : " + nbPlayer + " / " + players[nbPlayer].isReceivingSound);
 
 		if (isOver)
 			return;
@@ -83,9 +83,7 @@ public class GameManager : MonoBehaviour {
 		{
 			players[1 - nbPlayer].score++;
 
-			players[nbPlayer].timerTemporisation = 0;
-
-			// AJOUT FONCTION BIP ERROR
+			GetComponent<PlaySounds>().wrongAnswer(nbPlayer);
 
 		}
 			
