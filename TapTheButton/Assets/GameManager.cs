@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
-	public int freq = 10;
-	public int cooldownMusic = 100;
-	public int timeToPush = 20;
+	public int freq;
+	public int cooldownMusic;
+	public int timeToPush;
 
-	public List<Player> players;
+	public static List<Player> players;
 
 
 	// Use this for initialization
@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
 
 		players.Add(new Player (0));
 		players.Add(new Player (1));
+
+		//Debug.Log ("Test : " + players [0].id);
 	}
 
 
@@ -48,9 +50,21 @@ public class GameManager : MonoBehaviour {
 		p.timerPush++;
 	}
 
-	public void buttonPress()
+	public void buttonPress(int nbPlayer)
 	{
+		Debug.Log ("nbPlayer : " + nbPlayer + " / " + players[nbPlayer].isReceivingSound);
 
+
+		if (players[nbPlayer].isReceivingSound)
+		{
+			players[nbPlayer].score++;
+		}
+		else
+		{
+			players[1 - nbPlayer].score++;
+		}
+
+		GuiManager.instance.updateGui ();
 	}
 
 
