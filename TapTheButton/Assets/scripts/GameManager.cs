@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour {
 		{
 			players[1 - nbPlayer].score++;
 
+			players[nbPlayer].timerTemporisation = 0;
+
 			// AJOUT FONCTION BIP ERROR
 
 		}
