@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour {
 
 	public static List<Player> players;
 
-	public GameObject soundManager;
-
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +44,8 @@ public class GameManager : MonoBehaviour {
 
 	public void checkPlayer(Player p)
 	{
+
+
 		if (p.isReceivingSound && p.timerPush > timeToPush)
 		{
 			p.isReceivingSound = false;
@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour {
 
 		if (p.timerTemporisation > cooldownMusic && Random.Range(0, freq) == 0)
 		{
-			
+			Debug.Log ("PLAYER : " + p.id);
+
 			p.timerTemporisation = 0;
 			p.timerPush = 0;
 			p.isReceivingSound = true;
@@ -77,8 +78,11 @@ public class GameManager : MonoBehaviour {
 		else
 		{
 			players[1 - nbPlayer].score++;
-		}
 
+			// AJOUT FONCTION BIP ERROR
+
+		}
+			
 		checkVictoire (players[0]);
 		checkVictoire (players[1]);
 
