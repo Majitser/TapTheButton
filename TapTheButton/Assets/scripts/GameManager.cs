@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	public int freq;
 	public int cooldownMusic;
 	public int timeToPush;
+	public int scoreToWin;
 
 	public static List<Player> players;
 
@@ -30,6 +31,17 @@ public class GameManager : MonoBehaviour {
 		// FOR PLAYERS
 		checkPlayer (players [0]);
 		checkPlayer (players [1]);
+
+
+		if(Input.GetKeyDown("q"))
+		{
+			buttonPress(0);
+		}
+
+		if(Input.GetKeyDown("p"))
+		{
+			buttonPress(1);
+		}
 	}
 
 	public void checkPlayer(Player p)
@@ -60,13 +72,25 @@ public class GameManager : MonoBehaviour {
 		if (players[nbPlayer].isReceivingSound)
 		{
 			players[nbPlayer].score++;
+			players[nbPlayer].isReceivingSound = false;
 		}
 		else
 		{
 			players[1 - nbPlayer].score++;
 		}
 
+		checkVictoire (players[0]);
+		checkVictoire (players[1]);
+
 		GuiManager.instance.updateGui ();
+	}
+
+	public void checkVictoire(Player p)
+	{
+		if (players[p.id].score >= scoreToWin)
+		{
+			GuiManager.instance.displayVictory(p);
+		}
 	}
 
 
