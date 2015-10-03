@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour {
 	public static bool isOver;
 	public static List<Player> players;
 
+	private float aleaPlayer1;
+	private float aleaPlayer2;
+
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +31,8 @@ public class GameManager : MonoBehaviour {
 	void FixedUpdate() {
 
 		// FOR PLAYERS
-		checkPlayer (players [0]);
-		checkPlayer (players [1]);
+		//checkPlayer (players [0]);
+		//checkPlayer (players [1]);
 	}
 
 	void Update()
@@ -49,21 +52,21 @@ public class GameManager : MonoBehaviour {
 	{
 		if (isOver)
 			return;
-
+		Debug.Log ("ok");
 		if (p.isReceivingSound && p.timerPush > timeToPush)
 		{
 			p.isReceivingSound = false;
 		}
 
-		if (p.timerTemporisation > cooldownMusic && Random.Range(0, freq) == 0)
-		{
+		/*if (p.timerTemporisation > cooldownMusic && Random.Range(0, freq) == 0)
+		{*/
 			//Debug.Log ("PLAYER : " + p.id);
 
-			p.timerTemporisation = 0;
+			//p.timerTemporisation = 0;
 			p.timerPush = 0;
 			p.isReceivingSound = true;
 			GetComponent<PlaySounds>().takeSound(p);
-		}
+		//}
 
 		p.timerTemporisation++;
 		p.timerPush++;
