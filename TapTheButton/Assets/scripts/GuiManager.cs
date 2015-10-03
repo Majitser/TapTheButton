@@ -6,7 +6,7 @@ public class GuiManager : MonoBehaviour {
 	
 	public Text text0;
 	public Text text1;
-	public Text victoryText;
+	public GameObject victoryText;
 
 	public Button button0;
 	public Button button1;
@@ -36,6 +36,6 @@ public class GuiManager : MonoBehaviour {
 	public void displayVictory(Player p)
 	{
 		victoryText.gameObject.SetActive (true);
-		victoryText.text = "Victoire du joueur " + p.id;
+		victoryText.transform.GetChild(0).GetComponent<Text>().text = "Victoire du joueur " + p.id;
 	}
 }
