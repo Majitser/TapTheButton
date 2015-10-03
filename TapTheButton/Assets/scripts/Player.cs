@@ -10,6 +10,8 @@ public class Player {
 	public int score;
 	public bool isReceivingSound;
 
+	public bool hasClickOnThisRound;
+
 
 	public Player(int id)
 	{
@@ -18,6 +20,7 @@ public class Player {
 		this.id = id;
 		this.isReceivingSound = false;
 		this.score = 0;
+		this.hasClickOnThisRound = false;
 	}
 
 

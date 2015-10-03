@@ -15,6 +15,14 @@ public class GameManager : MonoBehaviour {
 	private float aleaPlayer1;
 	private float aleaPlayer2;
 
+	public static GameManager instance;
+
+
+
+	void Awake()
+	{
+		instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -53,36 +61,46 @@ public class GameManager : MonoBehaviour {
 		if (isOver)
 			return;
 		Debug.Log ("ok");
+		/*
 		if (p.isReceivingSound && p.timerPush > timeToPush)
 		{
 			p.isReceivingSound = false;
 		}
+		*/
 
 		/*if (p.timerTemporisation > cooldownMusic && Random.Range(0, freq) == 0)
 		{*/
 			//Debug.Log ("PLAYER : " + p.id);
 
 			//p.timerTemporisation = 0;
-			p.timerPush = 0;
+			//p.timerPush = 0;
 			p.isReceivingSound = true;
 			GetComponent<PlaySounds>().takeSound(p);
 		//}
 
-		p.timerTemporisation++;
-		p.timerPush++;
+		//p.timerTemporisation++;
+		//p.timerPush++;
 	}
 
 	public void buttonPress(int nbPlayer)
 	{
 		//Debug.Log ("nbPlayer : " + nbPlayer + " / " + players[nbPlayer].isReceivingSound);
 
-		if (isOver)
+		if (isOver || players[nbPlayer].hasClickOnThisRound)
 			return;
 
-		if (players[nbPlayer].isReceivingSound)
+
+		if (nbPlayer == 0)
+			ChronoRound.instance.canWinWithNoClick0 = false;
+		else if (nbPlayer == 1)
+			ChronoRound.instance.canWinWithNoClick1 = false;
+
+
+		if (players[1 - nbPlayer].isReceivingSound)
 		{
 			players[nbPlayer].score++;
-			players[nbPlayer].isReceivingSound = false;
+			//players[nbPlayer].isReceivingSound = false;
+
 		}
 		else
 		{
@@ -91,6 +109,8 @@ public class GameManager : MonoBehaviour {
 			GetComponent<PlaySounds>().wrongAnswer(nbPlayer);
 
 		}
+
+		players [nbPlayer].hasClickOnThisRound = true;
 			
 		checkVictoire (players[0]);
 		checkVictoire (players[1]);

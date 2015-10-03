@@ -9,6 +9,16 @@ public class ChronoRound : MonoBehaviour {
 
 	public float cooldown;
 
+	public bool canWinWithNoClick0;
+	public bool canWinWithNoClick1;
+
+	public static ChronoRound instance;
+
+	void Awake()
+	{
+		instance = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (createTimer (3));
@@ -22,6 +32,17 @@ public class ChronoRound : MonoBehaviour {
 
 		if(cooldown <= 0)
 		{
+			GameManager.players[0].hasClickOnThisRound = true;
+			GameManager.players[1].hasClickOnThisRound = true;
+
+			if (canWinWithNoClick0)
+				GameManager.players[0].score++;
+			if (canWinWithNoClick1)
+				GameManager.players[1].score++;
+
+			GuiManager.instance.updateGui();
+
+
 			StartCoroutine(createTimer(3));
 			cooldown = 10;
 		}
@@ -33,21 +54,47 @@ public class ChronoRound : MonoBehaviour {
 		{
 			StartCoroutine("afficherTimer", param);
 			yield return new WaitForSeconds(1);
+
+			GameManager.players[0].isReceivingSound = false;
+			GameManager.players[1].isReceivingSound = false;
+
 			param --;
 			
 			yield return true;
 		}
+
+		GameManager.players[0].hasClickOnThisRound = false;
+		GameManager.players[1].hasClickOnThisRound = false;
 		
 		if(param == -1)
 		{
-			int alea = Random.Range(0,3);
-			if(alea != 2)
-				GetComponent<GameManager>().checkPlayer(GameManager.players[alea]);
-			else 
+			int alea = Random.Range(0,4);
+			if(alea == 0)
+			{
+				GetComponent<GameManager>().checkPlayer(GameManager.players[0]);
+				canWinWithNoClick0 = true;
+				canWinWithNoClick1 = false;
+			}
+			else if(alea == 1)
+			{
+				GetComponent<GameManager>().checkPlayer(GameManager.players[1]);
+				canWinWithNoClick0 = false;
+				canWinWithNoClick1 = true;
+			}
+			else if (alea == 3)
 			{
 				GetComponent<GameManager>().checkPlayer(GameManager.players[0]);
 				GetComponent<GameManager>().checkPlayer(GameManager.players[1]);
+				
+				canWinWithNoClick0 = false;
+				canWinWithNoClick1 = false;
 			}
+			else
+			{
+				canWinWithNoClick0 = true;
+				canWinWithNoClick1 = true;
+			}
+
 			yield break;
 		}
 	}
