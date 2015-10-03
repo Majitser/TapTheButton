@@ -36,10 +36,18 @@ public class ChronoRound : MonoBehaviour {
 			GameManager.players[0].hasClickOnThisRound = true;
 			GameManager.players[1].hasClickOnThisRound = true;
 
-			if (canWinWithNoClick0)
-				GameManager.players[0].score++;
-			if (canWinWithNoClick1)
-				GameManager.players[1].score++;
+            int oldScore = GameManager.players[0].score;
+            if (canWinWithNoClick0)
+            {
+                GameManager.players[0].score++;
+                StartCoroutine(GameManager.instance.fill_score(0, oldScore));
+            }
+            if (canWinWithNoClick1)
+            {
+                oldScore = GameManager.players[1].score;
+                GameManager.players[1].score++;
+                StartCoroutine(GameManager.instance.fill_score(1, oldScore));
+            }
 
 			GuiManager.instance.updateGui();
 

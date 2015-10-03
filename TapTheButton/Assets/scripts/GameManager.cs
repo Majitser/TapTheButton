@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,7 +13,10 @@ public class GameManager : MonoBehaviour {
 	public static bool isOver;
 	public static List<Player> players;
 
-	private float aleaPlayer1;
+    public Image barBlue;
+    public Image barGreen;
+
+    private float aleaPlayer1;
 	private float aleaPlayer2;
 
 	public static GameManager instance;
@@ -77,16 +81,10 @@ public class GameManager : MonoBehaviour {
 			//p.timerPush = 0;
 			p.isReceivingSound = true;
 			GetComponent<PlaySounds>().takeSound(p);
-		//}
-
-		//p.timerTemporisation++;
-		//p.timerPush++;
 	}
 
 	public void buttonPress(int nbPlayer)
 	{
-		//Debug.Log ("nbPlayer : " + nbPlayer + " / " + players[nbPlayer].isReceivingSound);
-
 		if (isOver || players[nbPlayer].hasClickOnThisRound)
 			return;
 
@@ -96,28 +94,41 @@ public class GameManager : MonoBehaviour {
 		else if (nbPlayer == 1)
 			ChronoRound.instance.canWinWithNoClick1 = false;
 
-
-		if (players[1 - nbPlayer].isReceivingSound)
-		{
-			players[nbPlayer].score++;
-			//players[nbPlayer].isReceivingSound = false;
-
-		}
-		else
-		{
-			players[1 - nbPlayer].score++;
-
-			GetComponent<PlaySounds>().wrongAnswer(nbPlayer);
-
-		}
+        int oldScore = players[nbPlayer].score;
+        if (players[1 - nbPlayer].isReceivingSound)
+        {
+            players[nbPlayer].score++;
+            StartCoroutine(fill_score(nbPlayer, oldScore));
+        }
+        else
+        {
+            oldScore = players[1 - nbPlayer].score;
+            players[1 - nbPlayer].score++;
+            GetComponent<PlaySounds>().wrongAnswer(nbPlayer);
+            StartCoroutine(fill_score(1 - nbPlayer, oldScore));
+        }
 
 		players [nbPlayer].hasClickOnThisRound = true;
-			
 		checkVictoire (players[0]);
 		checkVictoire (players[1]);
 
-		GuiManager.instance.updateGui ();
+        GuiManager.instance.updateGui ();
 	}
+
+    public IEnumerator fill_score(int nbPlayer, int oldScore)
+    {
+        float rate = 0;
+        while (rate < 1.0)
+        {
+            if (nbPlayer == 0)
+                barBlue.fillAmount = Mathf.Lerp((float)oldScore / 10, (float)players[nbPlayer].score / 10, rate);
+            else if (nbPlayer == 1)
+                barGreen.fillAmount = Mathf.Lerp((float)oldScore / 10, (float)players[nbPlayer].score / 10, rate);
+            rate += Time.deltaTime;
+            yield return null;
+        }
+        yield return null;
+    }
 
 	public void checkVictoire(Player p)
 	{

@@ -11,6 +11,8 @@ public class GuiManager : MonoBehaviour {
 	public Button button0;
 	public Button button1;
 
+
+
 	public static GuiManager instance;
 
 
@@ -29,8 +31,6 @@ public class GuiManager : MonoBehaviour {
 	{
 		text0.text = GameManager.players [0].score.ToString();
 		text1.text = GameManager.players [1].score.ToString();
-
-
 	}
 
 	public void displayVictory(Player p)
