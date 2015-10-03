@@ -27,10 +27,11 @@ public class ChronoRound : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (cooldown > 0)
 			cooldown -= Time.deltaTime;
 
-		if(cooldown <= 0)
+		if(cooldown <= 0 && GameManager.isOver == false)
 		{
 			GameManager.players[0].hasClickOnThisRound = true;
 			GameManager.players[1].hasClickOnThisRound = true;

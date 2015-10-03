@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour {
 	{
 		if (isOver)
 			return;
+
 		Debug.Log ("ok");
 		/*
 		if (p.isReceivingSound && p.timerPush > timeToPush)
