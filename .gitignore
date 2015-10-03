@@ -7,7 +7,6 @@ IOS_Build/
 [Bb]uild
 [Ll]ibrary/
 sysinfo.txt
-*.apk
 *.main.obb 
  
 # ===================================== #
