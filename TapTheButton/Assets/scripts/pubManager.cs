@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Advertisements;
+using System;
 
 public class pubManager : MonoBehaviour {
 
@@ -44,5 +45,9 @@ public class pubManager : MonoBehaviour {
 		Advertisement.Show(); 
 	}
 
-
+	public void fbShare()
+	{
+		string facebookshare = "https://www.facebook.com/sharer/sharer.php?u=" + Uri.EscapeUriString("http://www.google.com");
+		Application.OpenURL(facebookshare);
+	}
 }
