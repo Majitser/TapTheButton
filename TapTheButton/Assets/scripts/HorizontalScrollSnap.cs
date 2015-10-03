@@ -24,6 +24,8 @@ public class HorizontalScrollSnap : MonoBehaviour
 	public GameObject rightBtn;
 	public GameObject leftBtn;
 	public Scrollbar progressBar;
+
+	public GameObject [] rounds;
 	
 	// Use this for initialization
 	void Start()
@@ -62,9 +64,10 @@ public class HorizontalScrollSnap : MonoBehaviour
 			}
 			
 			ScreensContainer.localPosition = Vector3.Lerp(ScreensContainer.localPosition, _lerp_target, 5 * Time.deltaTime);
-			if (Vector3.Distance(ScreensContainer.localPosition, _lerp_target) < 0.001f)
+			if (Vector3.Distance(ScreensContainer.localPosition, _lerp_target) < 0.01f)
 			{
 				_lerp = false;
+
 			}
 		}
 		
@@ -87,6 +90,7 @@ public class HorizontalScrollSnap : MonoBehaviour
 			_lerp = true;
 			_lerp_target = _positions[pos];
 			_actualPosition = pos;
+
 		}
 		
 		if (pos == 0)
@@ -190,6 +194,11 @@ public class HorizontalScrollSnap : MonoBehaviour
 				distance = Vector3.Distance(start, positions[i]);                
 				closest = positions[i];
 				_actualPosition=i;
+
+				foreach(GameObject g in rounds)
+					g.GetComponent<Image>().color = Color.grey;
+				
+				rounds[_actualPosition].GetComponent<Image>().color = Color.green;
 			}
 		}
 		
